@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/gradien_drawable"
+    android:gravity="center_vertical"
+    android:orientation="vertical"
+    android:paddingTop="56dp"
+    android:paddingBottom="56dp"
+    android:paddingLeft="32dp">
+
+     <com.upgrad.movieon.Views.MontserratTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Easy Notes"
+         android:textColor="@color/white"
+        android:textSize="@dimen/text_medium2" />
+
+     <com.upgrad.movieon.Views.MontserratTextView
+        android:id="@+id/user_name_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+         android:textColor="@color/white"
+         android:text="Notes Made Easy"
+        android:textSize="@dimen/text_medium2" />
+
+</LinearLayout>
