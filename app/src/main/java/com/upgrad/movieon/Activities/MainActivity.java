@@ -3,11 +3,13 @@ package com.upgrad.movieon.Activities;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Handler;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
@@ -47,8 +49,6 @@ public class MainActivity extends BaseActivity implements
     private FragmentManager fragmentManager;
     private AppBarLayout appBarLayout;
     private boolean doubleBackToExitPressedOnce = false;
-    public static final String EXTRA_ATTACH_FRAGMENT_NO = "extra_tab_no";
-    private static final int EXTRA_ATTACH_EDIT_NOTE_FRAGMENT = 1;
     private ImageView toolbarActionImageView;
 
     private void attachNotesFragment() {
@@ -56,14 +56,6 @@ public class MainActivity extends BaseActivity implements
         GridFragment fragment = new GridFragment();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.frame, fragment, GridFragment.TAG);
-        fragmentTransaction.commit();
-        appBarLayout.setExpanded(true, true);
-    }
-
-    private void attachEditNoteFragment() {
-        DetailFragment fragment = new DetailFragment();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.frame, fragment).addToBackStack(DetailFragment.TAG);
         fragmentTransaction.commit();
         appBarLayout.setExpanded(true, true);
     }
@@ -103,6 +95,9 @@ public class MainActivity extends BaseActivity implements
     @NeedsPermission(Manifest.permission.CALL_PHONE)
     public void callDeveloper() {
         Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "7597202177"));
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
         startActivity(intent);
     }
 
@@ -229,6 +224,5 @@ public class MainActivity extends BaseActivity implements
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         MainActivityPermissionsDispatcher.onRequestPermissionsResult(this,requestCode,grantResults);
-        // NOTE: delegate the permission handling to generated method
     }
 }

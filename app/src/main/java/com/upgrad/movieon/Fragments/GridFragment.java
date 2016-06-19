@@ -110,6 +110,7 @@ public class GridFragment extends Fragment implements AppBarObserver.OnOffsetCha
                             public boolean onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
                                 progressBar.setVisibility(View.VISIBLE);
                                 movieRecyclerAdapter.getMovies().clear();
+                                movieRecyclerAdapter.notifyDataSetChanged();
                                 sortKey = which;
                                 discover(sortKey);
                                 return true;
@@ -159,10 +160,10 @@ public class GridFragment extends Fragment implements AppBarObserver.OnOffsetCha
         });
     }
 
-    public void addMovies(ArrayList<Movie> movies) {
+    private void addMovies(ArrayList<Movie> movies) {
         ArrayList<Movie> tempMovies = movies;
         movieRecyclerAdapter.getMovies().addAll(tempMovies);
-        movieRecyclerAdapter.notifyItemRangeInserted(movieRecyclerAdapter.getMovies().size(), tempMovies.size());
+        movieRecyclerAdapter.notifyItemRangeInserted(movieRecyclerAdapter.getMovies().size(),movieRecyclerAdapter.getMovies().size() + tempMovies.size());
         movieRecyclerAdapter.notifyDataSetChanged();
     }
 

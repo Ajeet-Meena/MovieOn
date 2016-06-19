@@ -55,7 +55,7 @@ public class DetailFragment extends Fragment {
     private ProgressBar progressBar, progressBarSimilar;
     private SliderLayout sliderLayout;
     private FloatingActionButton floatingActionButton;
-    public static final String EXTRA_MOVIE_OBJECT = "extra_movie_object";
+    private static final String EXTRA_MOVIE_OBJECT = "extra_movie_object";
     public static final String TAG = MyApplication.class.getSimpleName();
     private String youtubeId;
     private RecyclerView recyclerView;
@@ -160,7 +160,7 @@ public class DetailFragment extends Fragment {
         ((BaseActivity) getActivity()).getToolbar().setTitle(movie.getTitle());
     }
 
-    public void getImages() {
+    private void getImages() {
         MyApplication.getAPIService().getImages(Integer.parseInt(movie.getId()), Constants.API_KEY)
                 .enqueue(new Callback<MovieImageResponse>() {
                     @Override
@@ -207,7 +207,7 @@ public class DetailFragment extends Fragment {
         sliderLayout.stopAutoCycle();
     }
 
-    public void watchOnYoutube(String id) {
+    private void watchOnYoutube(String id) {
         try {
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:" + id));
             startActivity(intent);
@@ -231,7 +231,7 @@ public class DetailFragment extends Fragment {
         }
     }
 
-    public void getSimilar() {
+    private void getSimilar() {
         MyApplication.getAPIService().getSimilar(Integer.parseInt(movie.getId()), Constants.API_KEY).enqueue(
                 new Callback<DiscoverResponse>() {
                     @Override
