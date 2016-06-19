@@ -9,6 +9,9 @@ import android.widget.TextView;
 import com.upgrad.movieon.R;
 import com.upgrad.movieon.Utils.Montserrat;
 
+/**
+ * Created by Ajeet Kumar Meena on 18-06-2016.
+ */
 public class MontserratTextView extends TextView {
 
     private Context context;

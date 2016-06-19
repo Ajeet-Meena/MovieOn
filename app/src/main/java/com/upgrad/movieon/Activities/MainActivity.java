@@ -21,9 +21,10 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.upgrad.movieon.BaseClasses.BaseActivity;
-import com.upgrad.movieon.Fragments.EditFragment;
+import com.upgrad.movieon.Fragments.DetailFragment;
 import com.upgrad.movieon.Fragments.GridFragment;
 import com.upgrad.movieon.Listeners.OnFragmentInteractionListener;
+import com.upgrad.movieon.Models.Movie;
 import com.upgrad.movieon.R;
 
 import permissions.dispatcher.NeedsPermission;
@@ -31,7 +32,7 @@ import permissions.dispatcher.OnPermissionDenied;
 import permissions.dispatcher.RuntimePermissions;
 
 /**
- * Created by Ajeet Kumar Meena on 10-06-2016.
+ * Created by Ajeet Kumar Meena on 18-06-2016.
  */
 
 @RuntimePermissions
@@ -60,9 +61,9 @@ public class MainActivity extends BaseActivity implements
     }
 
     private void attachEditNoteFragment() {
-        EditFragment fragment = new EditFragment();
+        DetailFragment fragment = new DetailFragment();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.frame, fragment).addToBackStack(EditFragment.TAG);
+        fragmentTransaction.replace(R.id.frame, fragment).addToBackStack(DetailFragment.TAG);
         fragmentTransaction.commit();
         appBarLayout.setExpanded(true, true);
     }
@@ -92,6 +93,7 @@ public class MainActivity extends BaseActivity implements
         int id = item.getItemId();
         switch (id) {
             case R.id.call_developer: {
+                MainActivityPermissionsDispatcher.callDeveloperWithCheck(this);
                 return true;
             }
         }
@@ -200,23 +202,12 @@ public class MainActivity extends BaseActivity implements
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-        int tabNo = intent.getIntExtra(EXTRA_ATTACH_FRAGMENT_NO, 0);
-        switch (tabNo) {
-            case EXTRA_ATTACH_EDIT_NOTE_FRAGMENT: {
-                attachEditNoteFragment();
-                break;
-            }
-            case 2:{
-                attachEditNoteFragment(intent.getIntExtra(EditFragment.EXTRA_NOTE_ID,0));
-                break;
-            }
-        }
     }
 
-    private void attachEditNoteFragment(int noteId) {
-        EditFragment fragment = EditFragment.getInstance(noteId);
+    public void attachEditNoteFragment(Movie movie) {
+        DetailFragment fragment = DetailFragment.getInstance(movie);
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.frame, fragment).addToBackStack(EditFragment.TAG);
+        fragmentTransaction.replace(R.id.frame, fragment).addToBackStack(DetailFragment.TAG);
         fragmentTransaction.commit();
         appBarLayout.setExpanded(true, true);
     }
@@ -237,6 +228,7 @@ public class MainActivity extends BaseActivity implements
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        MainActivityPermissionsDispatcher.onRequestPermissionsResult(this,requestCode,grantResults);
         // NOTE: delegate the permission handling to generated method
     }
 }

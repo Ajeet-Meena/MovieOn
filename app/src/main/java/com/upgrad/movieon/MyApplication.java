@@ -18,7 +18,7 @@ import okhttp3.logging.HttpLoggingInterceptor;
 
 
 /**
- * Created by Ajeet Kumar Meena on 10/12/15.
+ * Created by Ajeet Kumar Meena on 18-06-2016.
  */
 public class MyApplication extends Application {
 

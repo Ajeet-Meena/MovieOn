@@ -1,9 +1,10 @@
 <resources>
-    <string name="app_name">EasyNotes</string>
+    <string name="app_name">MovieOn</string>
     <string name="openDrawer">Open Drawer</string>
     <string name="closeDrawer">Close Drawer</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="action_settings">action_setting</string>
+    <string name="api_key">d87dfa439487cec42b41d65a901b8de8</string>
 </resources>

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Ajeet Kumar Meena on 18/05/16.
+ * Created by Ajeet Kumar Meena on 18-06-2016.
  */
 public class AppBarObserver implements AppBarLayout.OnOffsetChangedListener {
     AppBarLayout appBarLayout;

@@ -6,9 +6,12 @@ import com.upgrad.movieon.MyApplication;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+/**
+ * Created by Ajeet Kumar Meena on 18-06-2016.
+ */
 public class RestClient {
 
-    private static final String BASE_URL = "https://theboxprod.herokuapp.com/";
+    private static final String BASE_URL = "http://api.themoviedb.org/";
     private APIService apiService;
 
     public RestClient() {

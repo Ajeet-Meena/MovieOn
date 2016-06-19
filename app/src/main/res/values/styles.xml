@@ -4,6 +4,13 @@
     <style name="AppTheme" parent="AppTheme.Base">
         <item name="android:windowContentOverlay">@null</item>
         <item name="colorControlNormal">@color/primary_text_color</item>
+        <item name="md_medium_font">Montserrat-Regular.otf</item>
+        <item name="md_regular_font">Montserrat-Regular.otf</item>
+        <item name="md_dark_theme">false</item>
+        <item name="md_title_color">@color/brilliant_rose</item>
+        <item name="md_positive_color">@color/brilliant_rose</item>
+        <item name="md_negative_color">@color/primary_text_color</item>
+        <item name="md_content_color">@color/primary_text_color</item>
     </style>
 
 
@@ -52,6 +59,11 @@
         <item name="android:textColorSecondary">@color/primary_text_color</item>
         <item name="actionMenuTextColor">@color/primary_text_color</item>
 
+    </style>
+
+    <style name="MyAnimation.Window" parent="@android:style/Animation.Activity">
+        <item name="android:windowEnterAnimation">@anim/abc_slide_in_bottom</item>
+        <item name="android:windowExitAnimation">@anim/abc_slide_out_bottom</item>
     </style>
 
 
