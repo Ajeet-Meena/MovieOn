@@ -69,7 +69,7 @@ public class DetailFragment extends Fragment {
         title.setText(movie.getTitle());
         releaseDate.setText(movie.getReleaseDate());
         rating.setText(movie.getVoteAverage());
-        if(movie.getOverview().isEmpty()) {
+        if(movie.getOverview() == null || movie.getOverview().isEmpty()) {
             description.setText("No overview found.");
         }else {
             description.setText(movie.getOverview());
