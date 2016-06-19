@@ -5,6 +5,7 @@ import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -165,10 +166,10 @@ public class DetailFragment extends Fragment {
                 .enqueue(new Callback<MovieImageResponse>() {
                     @Override
                     public void onResponse(Call<MovieImageResponse> call, Response<MovieImageResponse> response) {
-                        progressBar.setVisibility(View.GONE);
                         if (response.body() != null) {
                             if (response.body().getBackdrops().isEmpty()) {
                                 noImageFound.setVisibility(View.VISIBLE);
+                                progressBar.setVisibility(View.GONE);
                             } else {
                                 HashMap<String, String> url_maps = new HashMap<>();
                                 for (Image image : response.body().getBackdrops()) {
@@ -188,7 +189,15 @@ public class DetailFragment extends Fragment {
     }
 
     private void setupImageSlider(HashMap<String, String> url_maps) {
-
+        sliderLayout.setVisibility(View.INVISIBLE);
+        sliderLayout.stopAutoCycle();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                progressBar.setVisibility(View.GONE);
+                sliderLayout.setVisibility(View.VISIBLE);
+            }
+        },1200);
         for (String name : url_maps.keySet()) {
             TextSliderView textSliderView = new TextSliderView(getActivity());
             textSliderView
@@ -204,7 +213,6 @@ public class DetailFragment extends Fragment {
         }
         sliderLayout.setPresetTransformer(SliderLayout.Transformer.DepthPage);
         sliderLayout.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
-        sliderLayout.stopAutoCycle();
     }
 
     private void watchOnYoutube(String id) {
