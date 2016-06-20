@@ -55,6 +55,16 @@
             android:text="Ah Oh, Please Retry to Give it a shot"
             android:textColor="@color/secondary_text"
             android:textSize="@dimen/text_large1" />
+
+        <com.upgrad.movieon.Views.MontserratButton
+            android:id="@+id/retry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@color/primary"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_medium2"
+            android:text="RETRY"/>
     </LinearLayout>
 
 

@@ -48,8 +48,6 @@ import retrofit2.Response;
  * Created by Ajeet Kumar Meena on 18-06-2016.
  */
 public class DetailFragment extends Fragment {
-
-
     private View rootView;
     private TextView title, releaseDate, rating, description;
     private Movie movie;
@@ -70,9 +68,9 @@ public class DetailFragment extends Fragment {
         title.setText(movie.getTitle());
         releaseDate.setText(movie.getReleaseDate());
         rating.setText(movie.getVoteAverage());
-        if(movie.getOverview() == null || movie.getOverview().isEmpty()) {
+        if (movie.getOverview() == null || movie.getOverview().isEmpty()) {
             description.setText("No overview found.");
-        }else {
+        } else {
             description.setText(movie.getOverview());
         }
         progressBar = (ProgressBar) rootView.findViewById(R.id.progress_bar);
@@ -92,7 +90,6 @@ public class DetailFragment extends Fragment {
         noImageFound = (TextView) rootView.findViewById(R.id.no_images);
         noSimilarMoviesFound = (TextView) rootView.findViewById(R.id.no_similar_movies);
     }
-
 
     public DetailFragment() {
         // Required empty public constructor
@@ -154,7 +151,6 @@ public class DetailFragment extends Fragment {
         this.movie = CoreGsonUtils.fromJson(getArguments().getString(EXTRA_MOVIE_OBJECT), Movie.class);
     }
 
-
     @Override
     public void onResume() {
         super.onResume();
@@ -173,7 +169,7 @@ public class DetailFragment extends Fragment {
                             } else {
                                 HashMap<String, String> url_maps = new HashMap<>();
                                 for (Image image : response.body().getBackdrops()) {
-                                    url_maps.put("Up Voated By: " + image.getVoteCount(), Constants.BASE_BACKDROP_IMAGE_URL + image.getFilePath());
+                                    url_maps.put("Up Votes: " + image.getVoteCount(), Constants.BASE_BACKDROP_IMAGE_URL + image.getFilePath());
                                 }
                                 setupImageSlider(url_maps);
                             }
@@ -197,7 +193,7 @@ public class DetailFragment extends Fragment {
                 progressBar.setVisibility(View.GONE);
                 sliderLayout.setVisibility(View.VISIBLE);
             }
-        },1200);
+        }, 1200);
         for (String name : url_maps.keySet()) {
             TextSliderView textSliderView = new TextSliderView(getActivity());
             textSliderView

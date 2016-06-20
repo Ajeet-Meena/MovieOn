@@ -10,6 +10,7 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
@@ -48,6 +49,7 @@ public class GridFragment extends Fragment implements AppBarObserver.OnOffsetCha
     private boolean shouldLoadMore = true;
     int pastVisibleItems, visibleItemCount, totalItemCount;
     private StaggeredGridLayoutManager layoutManager;
+    private Button retry;
     private int sortKey = 1;
 
     public GridFragment() {
@@ -82,6 +84,7 @@ public class GridFragment extends Fragment implements AppBarObserver.OnOffsetCha
 
                             @Override
                             public void onFailure(Call<DiscoverResponse> call, Throwable t) {
+                                progressBar.setVisibility(View.GONE);
                                 linearLayoutHolder.setVisibility(View.VISIBLE);
                                 recyclerView.setVisibility(View.GONE);
                             }
@@ -124,6 +127,15 @@ public class GridFragment extends Fragment implements AppBarObserver.OnOffsetCha
         });
         progressBar = (ProgressBar) rootView.findViewById(R.id.progress_bar);
         linearLayoutHolder.setVisibility(View.GONE);
+        retry = (Button) rootView.findViewById(R.id.retry);
+        retry.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                progressBar.setVisibility(View.VISIBLE);
+                pageNo = 1;
+                discover(sortKey);
+            }
+        });
     }
 
     private void setupRecyclerView() {
@@ -163,7 +175,7 @@ public class GridFragment extends Fragment implements AppBarObserver.OnOffsetCha
     private void addMovies(ArrayList<Movie> movies) {
         ArrayList<Movie> tempMovies = movies;
         movieRecyclerAdapter.getMovies().addAll(tempMovies);
-        movieRecyclerAdapter.notifyItemRangeInserted(movieRecyclerAdapter.getMovies().size(),movieRecyclerAdapter.getMovies().size() + tempMovies.size());
+        movieRecyclerAdapter.notifyItemRangeInserted(movieRecyclerAdapter.getMovies().size(), movieRecyclerAdapter.getMovies().size() + tempMovies.size());
         movieRecyclerAdapter.notifyDataSetChanged();
     }
 
