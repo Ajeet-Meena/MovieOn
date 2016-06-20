@@ -86,7 +86,6 @@ public class GridFragment extends Fragment implements AppBarObserver.OnOffsetCha
                             public void onFailure(Call<DiscoverResponse> call, Throwable t) {
                                 progressBar.setVisibility(View.GONE);
                                 linearLayoutHolder.setVisibility(View.VISIBLE);
-                                recyclerView.setVisibility(View.GONE);
                             }
                         }
                 );
