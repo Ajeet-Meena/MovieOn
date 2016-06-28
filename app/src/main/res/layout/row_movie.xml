@@ -42,7 +42,7 @@
                     android:layout_toLeftOf="@id/rating"
                     android:src="@drawable/ic_grade_white_24dp" />
 
-                <com.upgrad.movieon.Views.MontserratTextView
+                <com.ajeet_meena.movieon.Views.MontserratTextView
                     android:id="@+id/rating"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -58,7 +58,7 @@
             </RelativeLayout>
         </FrameLayout>
 
-        <com.upgrad.movieon.Views.MontserratTextView
+        <com.ajeet_meena.movieon.Views.MontserratTextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -71,7 +71,7 @@
             android:textColor="@color/primary_text_color"
             android:textSize="@dimen/text_small3" />
 
-        <com.upgrad.movieon.Views.MontserratTextView
+        <com.ajeet_meena.movieon.Views.MontserratTextView
             android:id="@+id/release_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

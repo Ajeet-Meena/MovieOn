@@ -9,14 +9,14 @@
     android:paddingBottom="56dp"
     android:paddingLeft="32dp">
 
-     <com.upgrad.movieon.Views.MontserratTextView
+     <com.ajeet_meena.movieon.Views.MontserratTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="MovieOn"
          android:textColor="@color/white"
         android:textSize="@dimen/text_medium2" />
 
-     <com.upgrad.movieon.Views.MontserratTextView
+     <com.ajeet_meena.movieon.Views.MontserratTextView
         android:id="@+id/user_name_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
